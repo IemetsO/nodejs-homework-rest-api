@@ -36,7 +36,13 @@ const registerSchema = Joi.object({
     repeat_password: Joi.ref("password"),
 })
   
-      owner: {
-        type: SchemaTypes.ObjectId,
-        ref: 'user',
-      }
+const schemas = {
+    registerSchema,
+}    
+
+const User = model("user", userSchema);
+
+module.exports = {
+    User,
+    schemas,
+}

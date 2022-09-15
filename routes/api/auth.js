@@ -1,9 +1,17 @@
 const express = require("express");
-const ctrl = require("../../controllers/auth")
-const {ctrlWrapper} = require("../../helpers");
+const ctrl = require("../../controllers/auth");
+const { ctrlWrapper } = require("../../helpers");
+const { validationBody } = require("../../middlewares");
+const { schemas } = require("../../models/user");
+
 const router = express.Router();
 
+router.post(
+  "/signup",
+  validationBody(schemas.registerSchema),
+  ctrlWrapper(ctrl.register)
+);
 
-router.post("/signup", ctrlWrapper(ctrl.register))
+router.post("login");
 
 module.exports = router;
